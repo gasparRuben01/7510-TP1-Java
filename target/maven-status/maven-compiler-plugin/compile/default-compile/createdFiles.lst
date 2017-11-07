@@ -1,2 +1,7 @@
 ar/uba/fi/tdd/rulogic/model/KnowledgeBase.class
 ar/uba/fi/tdd/rulogic/App.class
+ar/uba/fi/tdd/rulogic/model/Db.class
+ar/uba/fi/tdd/rulogic/model/ConcreteDb.class
+ar/uba/fi/tdd/rulogic/model/RuleAnd.class
+ar/uba/fi/tdd/rulogic/model/RuleFact.class
+ar/uba/fi/tdd/rulogic/model/Rule.class
