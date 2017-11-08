@@ -5,14 +5,18 @@ public class RuleFactBuilder{
 	protected String[] vars=null;
 	private int[] paramsOrder=null;
 
+	//nombre de la rule
 	public void setName(String name){
 		this.name=name;
 	}
 
+	//vars de la rule
 	public void setVars(String[] vars){
 		this.vars=vars.clone();
 	}
 
+	//setea el orden en que se debe evaluar los parametros, por ejemplo si
+	//vars=(X,Y) y parameteres=(Y,X) entonces paramsOrder={1,0}
 	public void setParamOrder(String[] parameters) throws Exception{
 		paramsOrder=new int[parameters.length];
 

@@ -8,6 +8,8 @@ import java.io.*;
 
 
 public class Parser{
+	//todas las funciones de parseo se aplican sobre este string. Una funcion de
+	//parseo toman lo que necesita de este string y lo reemplaza por otro string que le falta la parte que ella tomo
 	private static String stringToParse;
 	private static String namePattern="^([A-Za-z]*)";
 	private static String startOfVarsPattern="^(\\()";
@@ -17,12 +19,15 @@ public class Parser{
 	private static String ruleFlagPattern="^(:-)";
 	private static String endPattern="^(\\.)$";
 
+	//setea stringToParse Por primera vez, elimina todos los espacios en blanco
 	static void  setStringToParse(String string){
 		Pattern p=Pattern.compile("\\s");
 		Matcher m=p.matcher(string);
 		stringToParse=m.replaceAll("");
 	}
 
+	//retorna el primer group del patron que recibe como parametro, o null. Si no hay match
+	//lanza exception. Trunca de stringToParse la primer match del patron recibido
 	static String chop(String pattern) throws Exception{
 		Pattern p=Pattern.compile(pattern);
 		Matcher matcher=p.matcher(stringToParse);
@@ -36,12 +41,14 @@ public class Parser{
 		return null;
 	}
 
+	//aplica la funcion lookingAt de matcher sobre stringToParse
 	static boolean lookingAt(String pattern){
 		Pattern p=Pattern.compile(pattern);
 		Matcher matcher=p.matcher(stringToParse);
 		return matcher.lookingAt();
 	}
 
+	//aplica la funcion find de matcher sobre stringToParse
 	static boolean find(String pattern){
 		Pattern p=Pattern.compile(pattern);
 		Matcher m=p.matcher(stringToParse);
@@ -104,6 +111,7 @@ public class Parser{
 		return !find(ruleFlagString);
 	}
 
+	//no asegura que la sintaxis se correcta
 	public static boolean isFact(String string){
 		setStringToParse(string);
 		return isFact();
@@ -125,6 +133,8 @@ public class Parser{
 		}catch(Exception e){throw e;}
 	}
 
+	//retorna un fact en un TreeMap con un solo elemento, el nombre del fact es la key y
+	//su tupla el valor
 	public static TreeMap<String, String[]> parseFact(String string) throws Exception{
 		try{
 			setStringToParse(string);
