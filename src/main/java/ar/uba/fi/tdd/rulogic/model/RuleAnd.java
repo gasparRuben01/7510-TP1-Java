@@ -14,7 +14,7 @@ public class RuleAnd extends Rule{
 	}
 
 	@Override
-	public boolean evaluate(String[] tuple) throws Exception{
+	public boolean evaluate(String[] tuple){
 		boolean result=true;
 		for(Rule rule: rules){
 			if(db!=null){

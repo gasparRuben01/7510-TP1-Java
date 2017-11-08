@@ -26,7 +26,30 @@ public class ParserTest{
 		Rule r=Parser.parseRule(in);
 		Assert.assertTrue(r.getName().equals("rule"));
 	}
-}
-			
+	@Test
+	public void parseFact_Should_launchException_When_BadSintaxys(){
+		String badInput="varo";
+		try{
+			Parser.parseFact(badInput);
+			Assert.assertTrue(false);
+		}catch(Exception e1){
+			Assert.assertTrue(true);
+			badInput="varo juan, pedro).";
+			try{
+				Parser.parseFact(badInput);
+				Assert.assertTrue(false);
+			}catch(Exception e2){
+				Assert.assertTrue(true);
+				badInput="varon(juan)amiga(susana).";
+				try{
+					Parser.parseRule(badInput);
+					Assert.assertTrue(false);
+				}catch(Exception e3){
+					Assert.assertTrue(true);
+				}
+			}
+		}
+	}
 
+}
 	

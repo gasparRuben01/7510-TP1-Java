@@ -9,10 +9,10 @@ public abstract class Rule{
 		this.name=name;
 	}
 
-	public abstract boolean evaluate(String[] tuple) throws Exception;
+	public abstract boolean evaluate(String[] tuple);
 	
 	//se evalua consultando en la db pasada por parametro y se ignora la seteada como atributo
-	public boolean evaluate(String[] tuple, Db otherdb) throws Exception{
+	public boolean evaluate(String[] tuple, Db otherdb){
 		Db mineDb=this.db;
 		this.db=otherdb;
 		boolean result=evaluate(tuple);

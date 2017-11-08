@@ -10,7 +10,7 @@ public class RuleFact extends Rule{
 	}
 
 	@Override
-	public boolean evaluate(String[] tuple) throws Exception{
+	public boolean evaluate(String[] tuple){
 		if(db==null){
 			return false;
 		}

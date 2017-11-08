@@ -43,7 +43,7 @@ public class RuleFactBuilder{
 
 	public RuleFact build() throws Exception{
 		if(name==null || vars==null || paramsOrder==null){
-			throw new Exception();
+			throw new Exception("lack data");
 		}
 		return new RuleFact(name, paramsOrder);
 	}	
