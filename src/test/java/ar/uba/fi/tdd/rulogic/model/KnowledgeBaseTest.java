@@ -7,26 +7,30 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.mockito.*;
-import java.io.InputStream;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
+import java.io.*;
 
 public class KnowledgeBaseTest {
 
-	private KnowledgeBase knowledgeBase=new KnowledgeBase();
+	private static KnowledgeBase knowledgeBase=new KnowledgeBase();
 
 	@BeforeClass
 	public static void setUp() throws Exception {
-		ClassLoader classloader=Thread.currentThread().getContextClassLoader();
-		BufferedReader buff=new BufferedReader(new InputStreamReader(classloader.getResourceAsStream("rules.db")));
+		FileReader file=new FileReader(new File(KnowledgeBaseTest.class.getResource("/rules.db").toURI()));
+		knowledgeBase.loadDb(file);
 	}
 
 	@Test
-	public void test() {
-
-	//	Assert.assertTrue(this.knowledgeBase.answer("varon (javier)."));
-		Assert.assertTrue(true);
-
+	public void test() throws Exception{
+		Assert.assertTrue(this.knowledgeBase.answer("varon (juan)."));
+		Assert.assertTrue(this.knowledgeBase.answer("varon (roberto)."));
+		Assert.assertFalse(this.knowledgeBase.answer("varon (maria)."));
+		Assert.assertTrue(this.knowledgeBase.answer("padre(juan, pepe)."));
+		Assert.assertTrue(this.knowledgeBase.answer("varon(nicolas)."));
+		Assert.assertTrue(this.knowledgeBase.answer("tio(nicolas, alejandro, roberto)."));
+		Assert.assertTrue(this.knowledgeBase.answer("hermano(cecilia, juan)."));
+		Assert.assertTrue(this.knowledgeBase.answer("tia(cecilia, pepe, juan)."));
+		
 	}
+
 
 }

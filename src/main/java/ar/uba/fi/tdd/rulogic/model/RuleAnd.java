@@ -1,6 +1,5 @@
 package ar.uba.fi.tdd.rulogic.model;
 import java.util.ArrayList;
-import java.util.Iterator;
 
 public class RuleAnd extends Rule{
 	private ArrayList<Rule> rules=new ArrayList<Rule>();
@@ -15,12 +14,13 @@ public class RuleAnd extends Rule{
 	}
 
 	@Override
-	public boolean evaluate(String[] tuple){
-		boolean result=false;
+	public boolean evaluate(String[] tuple) throws Exception{
+		boolean result=true;
 		for(Rule rule: rules){
-			result= db!=null ? rule.evaluate(tuple, db) : rule.evaluate(tuple);
-			if(!result){
-				return false;
+			if(db!=null){
+				result&=rule.evaluate(tuple,db);
+			}else{
+				result&=rule.evaluate(tuple);
 			}
 		}
 		return result;

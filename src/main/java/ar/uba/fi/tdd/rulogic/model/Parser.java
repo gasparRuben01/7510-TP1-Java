@@ -16,8 +16,6 @@ public class Parser{
 	private static String ruleFlagString="(:-)";
 	private static String ruleFlagPattern="^(:-)";
 	private static String endPattern="^(\\.)$";
-	//borrar
-	private static String msg="";
 
 	static void  setStringToParse(String string){
 		Pattern p=Pattern.compile("\\s");
@@ -29,7 +27,7 @@ public class Parser{
 		Pattern p=Pattern.compile(pattern);
 		Matcher matcher=p.matcher(stringToParse);
 		if (!matcher.lookingAt()){
-			throw new Exception(msg);
+			throw new Exception("bad input");
 		}
 		stringToParse=matcher.replaceFirst("");
 		if(matcher.groupCount()>0){
@@ -88,7 +86,6 @@ public class Parser{
 
 	static Rule[] chopRules(String[] vars) throws Exception{
 		try{
-			msg=stringToParse;
 			chop(ruleFlagPattern);
 			RuleFactBuilder builder=new RuleFactBuilder();
 			builder.setVars(vars);
@@ -103,8 +100,13 @@ public class Parser{
 		}catch(Exception e){throw e;}
 	}
 
-	static public boolean isFact(){
+	static boolean isFact(){
 		return !find(ruleFlagString);
+	}
+
+	public static boolean isFact(String string){
+		setStringToParse(string);
+		return isFact();
 	}
 
 	public static RuleAnd parseRule(String string) throws Exception{

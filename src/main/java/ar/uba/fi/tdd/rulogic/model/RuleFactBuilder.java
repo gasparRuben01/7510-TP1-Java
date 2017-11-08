@@ -21,20 +21,15 @@ public class RuleFactBuilder{
 		}
 
 		boolean paramNoFind=true;
-		int var_index=0;
-		int param_index=0;
 
-		for(String param: parameters){
-			var_index=0;
-			for(String var: vars){
-				if(param.equals(var)){
+		for(int param_index=0; param_index<parameters.length; param_index++){
+			for(int var_index=0; var_index<vars.length; var_index++){
+				if(parameters[param_index].equals(vars[var_index])){
 					paramsOrder[param_index]=var_index;
 					paramNoFind=false;
 					break;
 				}
-				++var_index;
 			}
-			++param_index;
 		}
 
 		if (paramNoFind){

@@ -10,11 +10,11 @@ public class RuleFact extends Rule{
 	}
 
 	@Override
-	public boolean evaluate(String[] tuple){
+	public boolean evaluate(String[] tuple) throws Exception{
 		if(db==null){
 			return false;
 		}
-		String[] parameters=new String[tuple.length];
+		String[] parameters=new String[orderOfVariables.length];
 		int i=0;
 		for(int var: orderOfVariables){
 			parameters[i++]=tuple[var];

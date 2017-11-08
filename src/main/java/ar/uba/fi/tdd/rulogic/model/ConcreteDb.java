@@ -6,6 +6,7 @@ import java.util.HashMap;
 public class ConcreteDb implements Db{
 	private HashMap<String, HashMap<String, String[]> > db;
 
+	//este metodo retorna la key con la que se guarda la tupla
 	private String tupleToString(String[] tuple){
 		String concanated=new String(); 
 		for(String s: tuple){

@@ -9,14 +9,14 @@ public abstract class Rule{
 		this.name=name;
 	}
 
-	public abstract boolean evaluate(String[] tuple);
+	public abstract boolean evaluate(String[] tuple) throws Exception;
 	
 	//se evalua consultando en la db pasada por parametro y se ignora la seteada como atributo
-	public boolean evaluate(String[] tuple, Db db){
-		Db aux=db;
-		this.db=db;
+	public boolean evaluate(String[] tuple, Db otherdb) throws Exception{
+		Db mineDb=this.db;
+		this.db=otherdb;
 		boolean result=evaluate(tuple);
-		this.db=aux;
+		this.db=mineDb;
 		return result;
 	}
 
@@ -27,5 +27,9 @@ public abstract class Rule{
 	//una rule se evalua en contexto de una db
 	public void setDb(Db db){
 		this.db=db;
+	}
+
+	public Db getDb(){
+		return db;
 	}
 }
