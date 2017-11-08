@@ -1,10 +1,10 @@
 package ar.uba.fi.tdd.rulogic.model;
 
-public class SingleRule extends Rule{
+public class RuleFact extends Rule{
 	private int[] orderOfVariables;
 
 	//name es el nombre del fact a buscar en db y orderOfVariables es el orden que se va a evluar los parametros del fact
-	public SingleRule(String name, int[] orderOfVariables){
+	public RuleFact(String name, int[] orderOfVariables){
 		super(name);
 		this.orderOfVariables=orderOfVariables.clone();
 	}

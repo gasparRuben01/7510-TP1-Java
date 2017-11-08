@@ -1,7 +1,10 @@
 /home/pepe/Escritorio/gaspar/programacion/tecnicas_de_diseño/7510-TP1-Java/src/main/java/ar/uba/fi/tdd/rulogic/model/ConcreteDb.java
+/home/pepe/Escritorio/gaspar/programacion/tecnicas_de_diseño/7510-TP1-Java/src/main/java/ar/uba/fi/tdd/rulogic/model/RuleFactBuilder.java
 /home/pepe/Escritorio/gaspar/programacion/tecnicas_de_diseño/7510-TP1-Java/src/main/java/ar/uba/fi/tdd/rulogic/model/KnowledgeBase.java
 /home/pepe/Escritorio/gaspar/programacion/tecnicas_de_diseño/7510-TP1-Java/src/main/java/ar/uba/fi/tdd/rulogic/App.java
 /home/pepe/Escritorio/gaspar/programacion/tecnicas_de_diseño/7510-TP1-Java/src/main/java/ar/uba/fi/tdd/rulogic/model/RuleFact.java
 /home/pepe/Escritorio/gaspar/programacion/tecnicas_de_diseño/7510-TP1-Java/src/main/java/ar/uba/fi/tdd/rulogic/model/Db.java
+/home/pepe/Escritorio/gaspar/programacion/tecnicas_de_diseño/7510-TP1-Java/src/main/java/ar/uba/fi/tdd/rulogic/model/Parser.java
 /home/pepe/Escritorio/gaspar/programacion/tecnicas_de_diseño/7510-TP1-Java/src/main/java/ar/uba/fi/tdd/rulogic/model/RuleAnd.java
+/home/pepe/Escritorio/gaspar/programacion/tecnicas_de_diseño/7510-TP1-Java/src/main/java/ar/uba/fi/tdd/rulogic/model/Main.java
 /home/pepe/Escritorio/gaspar/programacion/tecnicas_de_diseño/7510-TP1-Java/src/main/java/ar/uba/fi/tdd/rulogic/model/Rule.java

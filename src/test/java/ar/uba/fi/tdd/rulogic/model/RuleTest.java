@@ -32,6 +32,22 @@ public class RuleTest{
 		rule.setDb(db);
 		Assert.assertTrue(rule.evaluate(tuple));
 	}
+
+	@Test
+	public void ruleFactBuilder_shouldReturnACorrectRuleTest() throws Exception{
+		RuleFactBuilder b=new RuleFactBuilder();
+		b.setName("amigos");
+		String[] vars={"X", "Y"};
+		b.setVars(vars);
+		vars[0]="Y";
+		vars[1]="X";
+		b.setParamOrder(vars);
+		RuleFact r=b.build();
+		r.setDb(db);
+		String[] p={"maria", "juan"};
+		Assert.assertTrue(r.evaluate(p));
+	}
+
 	//end tests for RuleFAct----
 	
 	//start tests for RuleAnd ----
@@ -47,6 +63,14 @@ public class RuleTest{
 		ruleAnd.and(rule2);
 		String[] tuple={"juan", "maria"};
 		Assert.assertTrue(rule1.evaluate(tuple));
+	}
+
+	@Test
+	public void parserRule_shouldReturnARuleWhichEvaluateTrue_Test() throws Exception{
+		RuleAnd r=Parser.parseRule("comprades(X,Y):- amigos(Y,X), vecinos(Y, X).");
+		r.setDb(db);
+		String[] tuple={"maria", "juan"};
+		Assert.assertTrue(r.evaluate(tuple));
 	}
 
 	//end tests for RuleAnd ---

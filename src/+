@@ -1,0 +1,86 @@
+package ar.uba.fi.tdd.rulogic.model;
+
+import java.util.regex.*;
+
+
+public class Parser{
+	private static String stringToParse;
+	private static String namePattern="^([A-Za-z]*)";
+	private static String startOfVarsPattern="^\(";
+	private static String separatorPattern="^,";
+	private static String endOfVarsPattern="^\)";
+	private static String rulesFlagPattern="^\)";
+	private static String endPattern="^\.";
+
+	String chop(String pattern){
+		Pattern pattern=Pattern.compile(pattern);
+		Matcher matcher=pattern.matcher(stringToParse);
+		if (!matcher.matchs()){
+			throw new Exception("bad input");
+		}
+		stringToParse=matcher.replaceFirst("");
+		return matcher.group(1);
+	}
+
+	boolean matchs(String pattern){
+		Pattern pattern=Pattern.compile(pattern);
+		Matcher matcher=pattern.matcher(stringToParse);
+		return matcher.matchs();
+	}
+
+
+	String chopName(){
+		return chop(namePattern);
+	}
+
+
+	boolean lastVar(){
+		return matchs(endOfVarsPattern); 
+	}
+
+	void chopVarSeparator(){
+		chop(separatorPattern);
+	}
+
+	boolean lastRule(){
+		return matchs(endPattern);
+	}
+
+	void chopRuleSeparator(){
+		chop(separatorPattern);
+	}
+	
+	String chopVars(){
+		chop(startOfVarsPattern);
+		String[] vars=new String[];
+		do{
+			vars.add(chopName());
+		}while(!lastVar() && chopVarSepartor());
+		chop(endOfVarsPattern);
+		return vars;
+	}
+
+	Rule[] chopRules(String[] vars){
+		chop(rulesFlagPattern);
+		RuleFactBuilder builder=new RuleFactBuilder();
+		builder.setVars(vars);
+		Rule[] rules=new Rule[];
+		do{
+			builder.setName(chopName());
+			builder.setVarsOrder(chopVars());
+			rules.add(builder.buildRule());
+		}while(!lastRule() && chopRuleSeparator());
+		chop(endPattern);
+	}
+
+	Rule parseRule(String string){
+		this.stringToParse=string;
+		RuleCompositeBuilder builder=new CompositeRuleBuilder;
+		builder.setName(chopName());
+		builder.setVars(chopVars());
+		builder.setSubRules(chopRules(builder.getVars()));
+		return builder.getRule();
+	}
+		
+}
+

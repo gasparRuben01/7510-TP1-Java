@@ -1,3 +1,4 @@
 ar/uba/fi/tdd/rulogic/model/RuleTest.class
 ar/uba/fi/tdd/rulogic/model/ConcreteDbTest.class
+ar/uba/fi/tdd/rulogic/model/ParserTest.class
 ar/uba/fi/tdd/rulogic/model/KnowledgeBaseTest.class
